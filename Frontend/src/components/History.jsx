@@ -4,6 +4,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 const History = ({ refreshTrigger }) => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const History = ({ refreshTrigger }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/history?page=${pageNum}&limit=3`
+        `${backendURL}/api/history?page=${pageNum}&limit=3`
       );
       setHistory(response.data.data);
       setTotalPages(response.data.pagination.totalPages);

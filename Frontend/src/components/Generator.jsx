@@ -5,6 +5,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Copy, Check, Loader2 } from 'lucide-react';
 
 const LANGUAGES = ['JavaScript', 'Python', 'Java', 'C++', 'Go', 'Rust'];
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const Generator = ({ onSuccess, switchToHistory }) => {
   const [prompt, setPrompt] = useState('');
@@ -22,7 +23,7 @@ const Generator = ({ onSuccess, switchToHistory }) => {
     setCopied(false);
 
     try {
-      const response = await axios.post('http://localhost:3001/api/generate', {
+      const response = await axios.post(`${backendURL}/api/generate`, {
         prompt,
         language,
       });
