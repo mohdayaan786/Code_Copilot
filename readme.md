@@ -22,7 +22,7 @@ A full-stack web application that generates code snippets using natural-language
 | **Backend**  | Node.js, Express.js                             |
 | **Database** | PostgreSQL                                      |
 | **ORM**      | Prisma                                          |
-| **AI Model** | OpenAI API (gpt-3.5-turbo)                      |
+| **AI Model** | Hugging Face API (swiss-ai/apertus-70b-instruct)                      |
 
 ---
 
@@ -75,7 +75,9 @@ Create a `.env` file:
 ```env
 PORT=3001
 DATABASE_URL="postgresql://postgres:password@localhost:5432/code_copilot?schema=public"
-OPENAI_API_KEY="sk-your-openai-api-key-here"
+HF_API_KEY="your-HF-api-key"
+HF_MODEL="your-HF-model"
+HF_PROVIDER="Provider-Name"
 ```
 
 Run migrations:
