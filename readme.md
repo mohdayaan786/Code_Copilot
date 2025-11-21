@@ -26,6 +26,23 @@ A full-stack web application that generates code snippets using natural-language
 
 ---
 
+### **🌍 Deployment**
+
+The application is deployed on modern cloud platforms with separate hosting for frontend and backend:
+
+| Service           | Platform | URL                                                                            |
+| ----------------- | -------- | ------------------------------------------------------------------------------ |
+| **Backend (API)** | Render   | [https://code-copilot.onrender.com/](https://code-copilot.onrender.com/)       |
+| **Frontend (UI)** | Vercel   | [https://code-copilot-32tt.vercel.app/](https://code-copilot-32tt.vercel.app/) |
+
+The frontend communicates with the backend using environment variables:
+
+```env
+VITE_BACKEND_URL=https://code-copilot.onrender.com
+```
+
+---
+
 ## **⚙️ Setup Instructions**
 
 ### **📌 Prerequisites**
