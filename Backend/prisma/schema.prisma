@@ -1,0 +1,34 @@
+// Prisma Schema File 
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Related table 1: Users
+model User {
+  id          Int          @id @default(autoincrement())
+  username    String       @unique
+  generations Generation[] // One-to-many relation
+  createdAt   DateTime     @default(now())
+}
+
+// Main table: Generations
+model Generation {
+  id        Int      @id @default(autoincrement())
+  prompt    String
+  language  String
+  code      String   @db.Text // Use Text for longer code blocks
+  timestamp DateTime @default(now())
+  
+  // Foreign Key Relation
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId]) // Index for faster lookup by user
+  @@index([timestamp]) // Index for faster pagination sorting
+}
