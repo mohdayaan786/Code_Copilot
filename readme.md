@@ -49,7 +49,7 @@ VITE_BACKEND_URL=https://code-copilot.onrender.com
 
 * Node.js (v16+)
 * PostgreSQL installed & running
-* OpenAI API Key
+* HuggingFace API Key
 
 ---
 
@@ -132,24 +132,22 @@ Stores: prompt → language → generated code → timestamp
 
 ```mermaid
 erDiagram
-    %% Entity definitions based on requirements
     USER {
-        INT id PK "Primary Key"
-        VARCHAR username "Minimal user detail"
+        INT id PK
+        STRING username
+        DATETIME createdAt
     }
 
     GENERATION {
-        INT id PK "Primary Key"
-        TEXT prompt "The natural-language input [cite: 24]"
-        VARCHAR language "The chosen programming language [cite: 25]"
-        TEXT code "The AI-generated code output [cite: 26]"
-        DATETIME timestamp "Time of generation [cite: 27]"
-        INT user_id FK "Foreign Key referencing USER "
+        INT id PK
+        TEXT prompt
+        STRING language
+        TEXT code
+        DATETIME timestamp
+        INT userId FK
     }
 
-    %% Relationship definition
-    %% A User creates zero or many Generations (One-to-Many relationship)
-    USER ||--o{ GENERATION : "creates and views history of"
+    USER ||--o{ GENERATION : "has many"
 
 ```
 ---
