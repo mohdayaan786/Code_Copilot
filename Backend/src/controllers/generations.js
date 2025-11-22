@@ -1,8 +1,5 @@
-const express = require('express');
-const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const axios = require('axios');
-
 const prisma = new PrismaClient();
 
 // Hugging Face Inference Providers config
@@ -20,7 +17,7 @@ async function getDefaultUser() {
 }
 
 // POST /api/generate - Generate Code
-router.post('/generate', async (req, res) => {
+async function generateCode(req, res) {
   const { prompt, language } = req.body;
 
   if (!prompt || !language) {
@@ -43,7 +40,6 @@ Return ONLY the code.
 
     const userContent = `Prompt: ${prompt}\n\nCode:\n`;
 
-    // 💡 Hugging Face router: OpenAI-style chat completions
     const hfResponse = await axios.post(
       `https://router.huggingface.co/${HF_PROVIDER}/v1/chat/completions`,
       {
@@ -99,10 +95,10 @@ Return ONLY the code.
       details: error.response?.data || error.message
     });
   }
-});
+}
 
 // GET /api/history
-router.get('/history', async (req, res) => {
+async function getHistory(req, res) {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 5;
   const skip = (page - 1) * limit;
@@ -131,6 +127,9 @@ router.get('/history', async (req, res) => {
     console.error('History Error:', error);
     res.status(500).json({ error: 'Failed to fetch history.' });
   }
-});
+}
 
-module.exports = router;
+module.exports = {
+  generateCode,
+  getHistory,
+};
