@@ -211,8 +211,8 @@ Returns paginated history.
 
 ## **📹 Demo Video (Required)**
 
-> ⏳ Will attach during final submission
-> *(2–3 min walkthrough: prompt → generate → DB insert → history view → pagination)*
+[> ⏳ Click here to view](https://drive.google.com/file/d/1tqCvfIEEftFv9HA10xh6QXCOEv2V1xMT/view?usp=sharing)
+> *(3 min walkthrough: prompt → generate → DB insert → history view → pagination)*
 
 ---
 
